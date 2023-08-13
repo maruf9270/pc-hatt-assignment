@@ -1,8 +1,7 @@
-import RootLayout from "@/components/Layout/RootLayout";
-import React from "react";
+import { RootLayout } from "@/components/Layout/RootLayout";
 
 const PcComponents = () => {
-  return <div></div>;
+  return <div>jjkjiijij</div>;
 };
 
 export default PcComponents;

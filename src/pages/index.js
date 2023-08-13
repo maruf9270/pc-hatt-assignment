@@ -1,13 +1,21 @@
-import { Inter } from "next/font/google";
-import RootLayout from "@/components/Layout/RootLayout";
+import { RootLayout } from "@/components/Layout/RootLayout";
+import ProductCard from "@/components/Products/ProductCard";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home(data) {
-  console.log(data);
-  return <main></main>;
+export default function Home({ parts }) {
+  return (
+    <div className="flex items-center justify-center gap-4 flex-wrap">
+      {parts?.data?.map((part) => {
+        console.log(part);
+        return (
+          <Link href={`/single-part/${part?.data?._id}`} key={part._id}>
+            <ProductCard key={part._id} part={part} />
+          </Link>
+        );
+      })}
+    </div>
+  );
 }
-
 Home.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };

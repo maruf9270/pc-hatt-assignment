@@ -1,20 +1,18 @@
-import { useTheme } from "next-themes";
+"use client";
 import Footer from "../ui/Footer";
 import Navber from "../ui/Navber";
 
-const RootLayout = ({ childred }) => {
+export const RootLayout = ({ children }) => {
   return (
     <div className="max-w-7xl mx-auto">
       <div>
         <Navber></Navber>
       </div>
 
-      <div className="min-h-[100vh]">{childred}</div>
+      <div className="min-h-[100vh] my-5">{children}</div>
       <div>
         <Footer></Footer>
       </div>
     </div>
   );
 };
-
-export default RootLayout;
