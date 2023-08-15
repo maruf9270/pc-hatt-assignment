@@ -9,7 +9,7 @@ export const RootLayout = ({ children }) => {
         <Navber></Navber>
       </div>
 
-      <div className="min-h-[100vh] my-5">{children}</div>
+      <div className="min-h-[100vh] my-5 max-w-7xl px-3">{children}</div>
       <div>
         <Footer></Footer>
       </div>

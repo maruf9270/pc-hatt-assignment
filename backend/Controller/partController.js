@@ -10,3 +10,16 @@ export const partHandler = async (req, res, next) => {
     throw new Error(error);
   }
 };
+
+export const allParts = async (req, res, next) => {
+  try {
+    const data = await Parts.find();
+    res.status(200).json({
+      success: true,
+      status: 200,
+      data: data,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
