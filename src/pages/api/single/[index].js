@@ -4,7 +4,7 @@ import connectToDB from "../../../../backend/Database/databaseConnect";
 import { partHandler } from "../../../../backend/Controller/partController";
 import { singleData } from "../../../../backend/Controller/singleController";
 const router = createRouter();
-connectToDB();
+
 router.get(singleData);
 
 export default router.handler();

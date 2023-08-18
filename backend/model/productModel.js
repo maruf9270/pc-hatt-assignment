@@ -12,7 +12,8 @@ const productSchema = new Schema({
 });
 
 export const Parts =
-  mongoose.models.Parts || mongoose.model("Parts", productSchema);
+  (await mongoose.models.Parts) ||
+  (await mongoose.model("Parts", productSchema));
 
 // export default mongoose.models.Parts ||
 //   mongoose.model("components", productSchema);
