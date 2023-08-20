@@ -6,10 +6,9 @@ export default function Home({ parts }) {
   return (
     <div className="flex items-center justify-center gap-4 flex-wrap">
       {parts?.data?.map((part) => {
-        console.log(part);
         return (
-          <Link href={`/single-part/${part?.data?._id}`} key={part._id}>
-            <ProductCard key={part._id} part={part} />
+          <Link href={`/pc-parts/${part?.data?.categody}`} key={part.name}>
+            <ProductCard key={part._id} part={part}></ProductCard>
           </Link>
         );
       })}

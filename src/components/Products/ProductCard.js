@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ProductCard = (data) => {
-  console.log(data.part.data);
-  const { image, name, categody, price, status, averageRating } =
+  console.log(data);
+  const { image, name, categody, price, status, averageRating, _id } =
     data.part.data;
   const rating = Number(averageRating);
   return (
@@ -70,7 +71,9 @@ const ProductCard = (data) => {
             </div>
           </div>
           <div className="card-actions">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link href={`/single-part/${_id}`} className="btn btn-primary">
+              Details
+            </Link>
           </div>
         </div>
       </div>
