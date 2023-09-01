@@ -1,4 +1,4 @@
-## Getting Started
+## Pc-Builder
 
 - Live link [https://pc-hatt-assignment.vercel.app/](https://pc-hatt-assignment.vercel.app/)
 
