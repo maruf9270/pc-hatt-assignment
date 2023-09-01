@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { RootLayout } from "@/components/Layout/RootLayout";
 import Image from "next/image";
 import React from "react";

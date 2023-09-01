@@ -46,7 +46,9 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+          <div>
+            Copyright © 2023 - All right reserved by ACME Industries Ltd.
+          </div>
         </div>
       </footer>
     </div>

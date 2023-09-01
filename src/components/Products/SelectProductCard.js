@@ -1,11 +1,19 @@
+import { addToBuildList } from "@/redux/features/pc-builder/pcBuilderSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { useDispatch } from "react-redux";
 
-const ProductCard = (data) => {
-  console.log(data);
+const SelectProductCard = (data) => {
   const { image, name, categody, price, status, averageRating, _id } =
-    data.part.data;
+    data.part;
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const handleAddtoBuilder = () => {
+    dispatch(addToBuildList(data.part));
+    router.push("http://localhost:3000/pc-builder");
+  };
   const rating = Number(averageRating);
   return (
     <div>
@@ -74,10 +82,18 @@ const ProductCard = (data) => {
               />
             </div>
           </div>
+          <div className="card-actions">
+            <button
+              className="btn btn-primary"
+              onClick={() => handleAddtoBuilder()}
+            >
+              Add to Builder
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductCard;
+export default SelectProductCard;
