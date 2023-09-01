@@ -1,4 +1,4 @@
-"use client";
+import { useSession } from "next-auth/react";
 import Footer from "../ui/Footer";
 import Navber from "../ui/Navber";
 

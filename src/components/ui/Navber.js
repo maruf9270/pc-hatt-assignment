@@ -1,19 +1,26 @@
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const Navber = () => {
+  const session = useSession();
+  const handleLogut = () => {
+    toast.success("Logged out successfully");
+    signOut();
+  };
   const nevberItems = [
     "Motherboard",
-    "RAM",
-    "Cpu",
-    "Power-Supply",
-    "Storage-Device",
-    "Monitor",
-    "Others",
+    "ram",
+    "Processor",
+    "power-supply",
+    "storage-device",
+    "monitor",
+    "graphics-card",
   ];
   const navContent = nevberItems.map((item) => {
     return (
       <li key={item}>
-        <Link href={`/pc-parts/${item}`} key={item}>
+        <Link href={`/pc-parts/${item}`} key={item} className="capitalize">
           {item}
         </Link>
       </li>
@@ -48,9 +55,6 @@ const Navber = () => {
                 <a>Category</a>
                 <ul className="p-2">{navContent}</ul>
               </li>
-              <li>
-                <a>Item 3</a>
-              </li>
             </ul>
           </div>
           <Link className="btn btn-ghost normal-case text-xl" href={"/"}>
@@ -65,15 +69,24 @@ const Navber = () => {
                 <ul className="p-2 z-50">{navContent}</ul>
               </details>
             </li>
-            <li>
-              <a>Item 3</a>
-            </li>
           </ul>
         </div>
         <div className="navbar-end">
           <Link href={"/pc-builder"} className="btn">
             Pc-Builder
           </Link>
+          {session?.status === "authenticated" ? (
+            <button
+              onClick={() => handleLogut()}
+              className="btn btn-primary text-white mx-2"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link href={"/login"} className="btn btn-primary text-white mx-2">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

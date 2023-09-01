@@ -8,12 +8,12 @@ export default function MyApp({ Component, pageProps, session }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
 
-  return getLayout(
-    <Provider store={store}>
-      <SessionProvider session={session}>
+  return (
+    <SessionProvider session={session}>
+      <Provider store={store}>
         <ToastContainer />
-        <Component {...pageProps} />
-      </SessionProvider>
-    </Provider>
+        {getLayout(<Component {...pageProps} />)}
+      </Provider>
+    </SessionProvider>
   );
 }

@@ -12,7 +12,7 @@ const SelectProductCard = (data) => {
   const dispatch = useDispatch();
   const handleAddtoBuilder = () => {
     dispatch(addToBuildList(data.part));
-    router.push("http://localhost:3000/pc-builder");
+    router.push("https://pc-hatt-assignment.vercel.app/pc-builder");
   };
   const rating = Number(averageRating);
   return (

@@ -1,3 +1,4 @@
+import { RootLayout } from "@/components/Layout/RootLayout";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,7 +12,7 @@ const RegisterForm = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const url = `http://localhost:3000/api/register`;
+    const url = `https://pc-hatt-assignment.vercel.app/api/register`;
     console.log(url);
     const data = {
       name,
@@ -40,6 +41,9 @@ const RegisterForm = () => {
         className="w-full max-w-md p-6 rounded-lg shadow-md"
         onSubmit={(e) => handleSubmit(e)}
       >
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">Register</h2>
+        </div>
         <div className="mb-4">
           <label
             htmlFor="name"
@@ -98,7 +102,9 @@ const RegisterForm = () => {
           <button
             className="bg-gray-700 text-white flex items-center py-2 px-4 rounded-md hover:bg-gray-800 w-full justify-center"
             onClick={() =>
-              signIn("github", { callbackUrl: "http://localhost:3000/" })
+              signIn("github", {
+                callbackUrl: "https://pc-hatt-assignment.vercel.app/",
+              })
             }
           >
             <svg
@@ -126,4 +132,7 @@ const RegisterForm = () => {
   );
 };
 
+RegisterForm.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
 export default RegisterForm;

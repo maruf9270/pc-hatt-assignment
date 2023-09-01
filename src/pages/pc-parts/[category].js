@@ -1,5 +1,6 @@
 import { RootLayout } from "@/components/Layout/RootLayout";
 import ProductCard from "@/components/Products/ProductCard";
+import Link from "next/link";
 
 const PcComponents = (param) => {
   console.log(param);
@@ -7,7 +8,9 @@ const PcComponents = (param) => {
     <div>
       <div className="flex items-center justify-center gap-4 flex-wrap">
         {param.part.data.map((part) => (
-          <ProductCard key={part.name} part={{ data: part }} />
+          <Link href={`/single-part/${part?._id}`} key={part._id}>
+            <ProductCard key={part.name} part={{ data: part }} />
+          </Link>
         ))}
       </div>
     </div>
@@ -20,7 +23,9 @@ PcComponents.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/all-parts");
+  const res = await fetch(
+    "https://book-cotalog-backend.vercel.app/api/v1/parts"
+  );
   const data = await res.json();
 
   const paths = data.data.map((part) => ({
@@ -35,7 +40,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:3000/api/single-category/${params.category}`
+    `https://book-cotalog-backend.vercel.app/api/v1/parts/category/${params.category}`
   );
   const data = await res.json();
 

@@ -26,7 +26,9 @@ SelectPart.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/all-parts");
+  const res = await fetch(
+    "https://book-cotalog-backend.vercel.app/api/v1/parts"
+  );
   const data = await res.json();
 
   const paths = data.data.map((part) => ({
@@ -41,7 +43,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:3000/api/single-category/${params.category}`
+    `https://book-cotalog-backend.vercel.app/api/v1/parts/category/${params.category}`
   );
   const data = await res.json();
 

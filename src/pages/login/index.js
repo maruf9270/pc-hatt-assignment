@@ -1,9 +1,39 @@
+import { RootLayout } from "@/components/Layout/RootLayout";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const router = useRouter();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const sData = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
+    if (sData?.error) {
+      toast.error(sData?.error);
+    }
+    if (sData?.ok) {
+      toast.success("Logged in successfully");
+      router.push("/");
+    }
+  };
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="w-full max-w-md p-6 rounded-lg shadow-md">
+      <form
+        className="w-full max-w-md p-6 rounded-lg shadow-md"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">Login</h2>
+        </div>
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -53,4 +83,7 @@ const Login = () => {
   );
 };
 
+Login.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
 export default Login;

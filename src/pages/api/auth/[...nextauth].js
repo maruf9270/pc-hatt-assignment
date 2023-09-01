@@ -14,13 +14,6 @@ export const authOptions = {
       clientSecret: "6023590f0c6a36864e762fc0a6cd67dc683aa272",
     }),
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-
       async authorize(credentials, req) {
         connectToDB();
         const { email, password } = credentials;
@@ -38,5 +31,9 @@ export const authOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: `https://pc-hatt-assignment.vercel.app/login`,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 export default NextAuth(authOptions);

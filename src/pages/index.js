@@ -1,11 +1,17 @@
 import { RootLayout } from "@/components/Layout/RootLayout";
 import ProductCard from "@/components/Products/ProductCard";
+import Hero from "@/components/ui/Hero";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home({ parts }) {
+  console.log(parts);
   let i = 0;
   return (
     <>
+      <div className="my-5">
+        <Hero></Hero>
+      </div>
       <h2 className="font-bold text-2xl">Our Featured Products</h2>
       <div className="flex items-center justify-center gap-4 flex-wrap">
         {parts?.data?.map((part) => {
@@ -42,7 +48,9 @@ Home.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/parts");
+  const res = await fetch(
+    "https://book-cotalog-backend.vercel.app/api/v1/parts/featured"
+  );
   const data = await res.json();
   return {
     props: {
